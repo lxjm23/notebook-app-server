@@ -4,7 +4,10 @@ const mongoose = require("mongoose");
 const cors = require("cors")
 
 const app = express()
-app.use(cors());
+app.use(cors({
+  origin: ['https://notebook-app-frontend.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
 
 app.use(express.json())
 
