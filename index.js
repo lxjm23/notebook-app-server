@@ -4,11 +4,12 @@ const mongoose = require("mongoose");
 const cors = require("cors")
 
 const app = express()
-app.use(cors())
+app.use(cors());
+
 app.use(express.json())
 
 //database connection
-mongoose.connect(`mongodb+srv://${process.env.MONGODB}@cluster0.szsdpic.mongodb.net/Notes?retryWrites=true&w=majority`)
+mongoose.connect(`${process.env.MONGODB_URI}`)
 
 //create schema
 const notesSchema ={
@@ -95,5 +96,5 @@ app.patch("/update", function(req, res) {
 
 
 
-const PORT = process.env.PORT
-app.listen(PORT, () => console.log("Server started at " + PORT) )
+const PORT = process.env.PORT || 3000
+app.listen(PORT, '0.0.0.0', () => console.log('Server started at ' + PORT));
