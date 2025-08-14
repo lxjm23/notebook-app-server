@@ -11,8 +11,20 @@ app.use(cors({
 
 app.use(express.json())
 
+
+// health
+app.get('/api/health', (_req, res) => res.send('ok'));
+
 //database connection
-mongoose.connect(`${process.env.MONGODB_URI}`)
+(async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    app.listen(process.env.PORT || 3001, '0.0.0.0', () => console.log('API up'));
+  } catch (e) {
+    console.error('Mongo connect failed', e);
+    process.exit(1);
+  }
+})();
 
 //create schema
 const notesSchema ={
