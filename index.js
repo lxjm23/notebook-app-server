@@ -19,7 +19,7 @@ app.get('/api/health', (_req, res) => res.send('ok'));
 (async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    app.listen(process.env.PORT || 3001, '0.0.0.0', () => console.log('API up'));
+    app.listen(process.env.PORT || 3000, '0.0.0.0', () => console.log('API up'));
   } catch (e) {
     console.error('Mongo connect failed', e);
     process.exit(1);
@@ -112,4 +112,4 @@ app.patch("/update", function(req, res) {
 
 
 const PORT = process.env.PORT || 3000
-app.listen(PORT, '0.0.0.0', () => console.log('Server started at ' + PORT));
+
